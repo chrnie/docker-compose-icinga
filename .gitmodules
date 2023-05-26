@@ -1,0 +1,3 @@
+[submodule "icingaweb2-module-grafana"]
+	path = icingaweb2-module-grafana
+	url = https://github.com/Mikesch-mp/icingaweb2-module-grafana
