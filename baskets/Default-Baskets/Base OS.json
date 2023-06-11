@@ -1,0 +1,437 @@
+{
+    "ExternalCommand": {
+        "by_ssh_load": {
+            "arguments": {
+                "-6": {
+                    "description": "Use IPv6 only",
+                    "set_if": "$by_ssh_ipv6$"
+                },
+                "-4": {
+                    "description": "Use IPv4 only",
+                    "set_if": "$by_ssh_ipv4$"
+                },
+                "-C": {
+                    "type": "Function",
+                    "body": "/* Icinga 2 does not export DSL function bodies via API */"
+                },
+                "-E": {
+                    "description": "Ignore all or (if specified) first n lines on STDERR [optional]",
+                    "value": "$by_ssh_skip_stderr$"
+                },
+                "-H": {
+                    "description": "Host name, IP Address, or unix socket (must be an absolute path)",
+                    "value": "$by_ssh_address$"
+                },
+                "-c": {
+                    "description": "Response time to result in critical status (seconds)",
+                    "value": "$by_ssh_crit$"
+                },
+                "-i": {
+                    "description": "identity of an authorized key [optional]",
+                    "value": "$by_ssh_identity$"
+                },
+                "-l": {
+                    "description": "SSH user name on remote host [optional]",
+                    "value": "$by_ssh_logname$"
+                },
+                "-o": {
+                    "description": "Provide ssh options (may be repeated)",
+                    "value": "$by_ssh_options$"
+                },
+                "-p": {
+                    "description": "Port number (default: none)",
+                    "value": "$by_ssh_port$"
+                },
+                "-q": {
+                    "description": "Tell ssh to suppress warning and diagnostic messages [optional]",
+                    "set_if": "$by_ssh_quiet$"
+                },
+                "-t": {
+                    "description": "Seconds before connection times out (default: 10)",
+                    "value": "$by_ssh_timeout$"
+                },
+                "-w": {
+                    "description": "Response time to result in warning status (seconds)",
+                    "value": "$by_ssh_warn$"
+                }
+            },
+            "command": "check_by_ssh",
+            "fields": [
+                {
+                    "datafield_id": 27,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 28,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 29,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 30,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 31,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 32,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "methods_execute": "PluginCheck",
+            "object_name": "by_ssh_load",
+            "object_type": "external_object",
+            "timeout": 60,
+            "uuid": "99670c96-3488-4c6c-a500-6bb2c14c62a6",
+            "vars": {
+                "by_ssh_address": "$check_address$",
+                "by_ssh_arguments": {
+                    "-c": {
+                        "description": "Exit with CRITICAL status if load average exceed CLOADn; the load average format is the same used by 'uptime' and 'w'",
+                        "value": "$load_cload1$,$load_cload5$,$load_cload15$"
+                    },
+                    "-r": {
+                        "description": "Divide the load averages by the number of CPUs (when possible)",
+                        "set_if": "$load_percpu$"
+                    },
+                    "-w": {
+                        "description": "Exit with WARNING status if load average exceeds WLOADn",
+                        "value": "$load_wload1$,$load_wload5$,$load_wload15$"
+                    }
+                },
+                "by_ssh_command": "$RemotePluginDir$/check_load",
+                "by_ssh_quiet": false,
+                "check_address": {
+                    "arguments": [],
+                    "deprecated": false,
+                    "name": "<anonymous>",
+                    "side_effect_free": false,
+                    "type": "Function"
+                },
+                "check_ipv4": "$by_ssh_ipv4$",
+                "check_ipv6": "$by_ssh_ipv6$",
+                "load_cload1": 10,
+                "load_cload15": 4,
+                "load_cload5": 6,
+                "load_percpu": false,
+                "load_wload1": 5,
+                "load_wload15": 3,
+                "load_wload5": 4
+            }
+        }
+    },
+    "HostTemplate": {
+        "Base Template": {
+            "check_command": "hostalive",
+            "fields": [
+                {
+                    "datafield_id": 33,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "object_name": "Base Template",
+            "object_type": "template",
+            "uuid": "0f90aeb1-8aa3-4a07-98a3-c25b50946bf6"
+        },
+        "Linux by agent": {
+            "accept_config": true,
+            "fields": [],
+            "has_agent": true,
+            "imports": [
+                "Base Template"
+            ],
+            "master_should_connect": true,
+            "object_name": "Linux by agent",
+            "object_type": "template",
+            "uuid": "fb31a5fc-08a6-4e0d-b20e-f94627ff0414",
+            "vars": {
+                "os": "Linux"
+            }
+        },
+        "Linux by ssh": {
+            "fields": [
+                {
+                    "datafield_id": 34,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "imports": [
+                "Base Template"
+            ],
+            "object_name": "Linux by ssh",
+            "object_type": "template",
+            "uuid": "12625203-2345-4430-bc6e-11b4ad3711fe",
+            "vars": {
+                "os": "Linux"
+            }
+        }
+    },
+    "ServiceTemplate": {
+        "Default Agent Service": {
+            "fields": [],
+            "imports": [
+                "Default Service"
+            ],
+            "object_name": "Default Agent Service",
+            "object_type": "template",
+            "use_agent": true,
+            "uuid": "b95ba599-7dd8-4f43-bc9e-624ebf18122d"
+        },
+        "Default Service": {
+            "check_interval": 300,
+            "check_timeout": 120,
+            "enable_active_checks": true,
+            "enable_event_handler": false,
+            "enable_flapping": true,
+            "enable_notifications": true,
+            "enable_passive_checks": true,
+            "enable_perfdata": true,
+            "fields": [],
+            "flapping_threshold_high": "25",
+            "flapping_threshold_low": "30",
+            "max_check_attempts": "3",
+            "object_name": "Default Service",
+            "object_type": "template",
+            "retry_interval": 60,
+            "uuid": "52bf7447-7057-4f6d-9373-c234fda7adc7",
+            "volatile": false
+        },
+        "Default SSH Service": {
+            "check_command": "by_ssh",
+            "fields": [
+                {
+                    "datafield_id": 34,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "imports": [
+                "Default Service"
+            ],
+            "object_name": "Default SSH Service",
+            "object_type": "template",
+            "use_agent": false,
+            "uuid": "e1317f0e-a8da-453f-8143-ac8059916a2d"
+        },
+        "Linux Load": {
+            "check_command": "load",
+            "fields": [
+                {
+                    "datafield_id": 27,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 28,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 29,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 30,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 31,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 32,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "imports": [
+                "Default Agent Service"
+            ],
+            "object_name": "Linux Load",
+            "object_type": "template",
+            "uuid": "0ffa93df-f83e-4a8f-b9a0-62fcd37c156b"
+        },
+        "Linux SSH Load": {
+            "check_command": "load",
+            "fields": [
+                {
+                    "datafield_id": 27,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 28,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 29,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 30,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 31,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 32,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "imports": [
+                "Default SSH Service"
+            ],
+            "object_name": "Linux SSH Load",
+            "object_type": "template",
+            "uuid": "1b72c38b-d56d-4750-802d-6d8a83933659"
+        }
+    },
+    "ServiceSet": {
+        "Linux Agent Base Checks": {
+            "description": "Basic system checks for Linux-like Machines with icinga2 agent installed and configured",
+            "object_name": "Linux Agent Base Checks",
+            "object_type": "template",
+            "services": [
+                {
+                    "fields": [],
+                    "imports": [
+                        "Linux Load"
+                    ],
+                    "object_name": "Linux Load",
+                    "object_type": "object",
+                    "uuid": "f118dcf2-f016-40b4-ac28-637251b29ff2"
+                }
+            ],
+            "uuid": "ce8bdda8-0c96-4073-a12d-d42b78543f82"
+        }
+    },
+    "DataList": {
+        "Operating Systems": {
+            "entries": [
+                {
+                    "entry_name": "Linux",
+                    "entry_value": "Linux",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "Windows",
+                    "entry_value": "Windows",
+                    "format": "string",
+                    "allowed_roles": null
+                }
+            ],
+            "list_name": "Operating Systems",
+            "owner": "icingaadmin",
+            "uuid": "b023bfa1-55e8-461e-9897-0fb1739d4b62"
+        }
+    },
+    "Datafield": {
+        "27": {
+            "uuid": "2c687ed8-9023-4167-81cf-72ae09328e78",
+            "varname": "load_cload1",
+            "caption": "load_cload1",
+            "description": "Exit with CRITICAL status if load average exceed CLOADn; the load average format is the same used by 'uptime' and 'w'",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "28": {
+            "uuid": "99c65510-9b84-44f5-b664-c538a9ad043f",
+            "varname": "load_cload15",
+            "caption": "load_cload15",
+            "description": "Exit with CRITICAL status if load average exceed CLOADn; the load average format is the same used by 'uptime' and 'w'",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "29": {
+            "uuid": "c0792df9-e721-4662-8914-d770e1c8fe45",
+            "varname": "load_cload5",
+            "caption": "load_cload5",
+            "description": "Exit with CRITICAL status if load average exceed CLOADn; the load average format is the same used by 'uptime' and 'w'",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "30": {
+            "uuid": "d7db9aec-c9a9-4708-bd0b-1dbcff5d6966",
+            "varname": "load_wload1",
+            "caption": "load_wload1",
+            "description": "Exit with WARNING status if load average exceeds WLOADn",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "31": {
+            "uuid": "c608df4f-a764-4cee-9c1a-17e79d480a16",
+            "varname": "load_wload15",
+            "caption": "load_wload15",
+            "description": "Exit with WARNING status if load average exceeds WLOADn",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "32": {
+            "uuid": "e9002ea2-ef75-4c11-abce-ca84926116f2",
+            "varname": "load_wload5",
+            "caption": "load_wload5",
+            "description": "Exit with WARNING status if load average exceeds WLOADn",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "33": {
+            "uuid": "809b7b09-3a9b-4c4f-9d6f-9cc006d2d67d",
+            "varname": "os",
+            "caption": "Operating System",
+            "description": null,
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeDatalist",
+            "format": null,
+            "settings": {
+                "behavior": "strict",
+                "data_type": "string",
+                "datalist": "Operating Systems"
+            },
+            "category": null
+        },
+        "34": {
+            "uuid": "a9cac895-f316-499b-8871-be60e91e29f7",
+            "varname": "by_ssh_logname",
+            "caption": "by_ssh_logname",
+            "description": "SSH user name on remote host [optional]",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        }
+    }
+}

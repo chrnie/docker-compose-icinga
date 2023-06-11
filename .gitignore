@@ -3,3 +3,5 @@
 
 # Except those related to Git (and GitHub)
 !.git*
+
+baskets/basket_snapshots_*

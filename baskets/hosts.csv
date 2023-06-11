@@ -1,0 +1,8 @@
+'hostname';'import';'address';'vars'
+'mysql';'["Base Template", "App MySQL Server"]';'mysql';'{"mysql_health_username":"icinga","mysql_health_password":"icingamon","mysql_is_slave":false}'
+'renderer';'["Base Template", "App Grafana Renderer"]';'renderer';''
+'grafana';'["Base Template", "App Grafana"]';'grafana';''
+'influxdb';'["Base Template", "App InfluxDB"]';'influxdb';''
+'icingadb-redis';'["Base Template", "App icinga2/Redis"]';'icingadb-redis';''
+'icinga2'; '["Base Template", "App icinga2/master"]';'icinga2';''
+'icingaweb'; '["Base Template", "App icinga2/web"]';'icingaweb';''

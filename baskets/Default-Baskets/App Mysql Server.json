@@ -1,0 +1,495 @@
+{
+    "HostTemplate": {
+        "App MySQL Server": {
+            "check_command": "hostalive",
+            "fields": [
+                {
+                    "datafield_id": 1,
+                    "is_required": "y",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 2,
+                    "is_required": "y",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 3,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "object_name": "App MySQL Server",
+            "object_type": "template",
+            "uuid": "97b57333-dadc-4362-ace8-287d05c77d67"
+        }
+    },
+    "ServiceGroup": {
+        "MySQL Checks": {
+            "assign_filter": "\"App MySQL Server\"=host.templates",
+            "object_name": "MySQL Checks",
+            "object_type": "object",
+            "uuid": "574989ab-b2a1-4c59-859e-f3d22748f388"
+        }
+    },
+    "DataList": {
+        "check_mysql_health Check Modes": {
+            "entries": [
+                {
+                    "entry_name": "cluster-ndb-running",
+                    "entry_value": "Checks if all cluster nodes are running",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "connection-time",
+                    "entry_value": "Connection establishment and login duration",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "encode",
+                    "entry_value": " \tReads standard input (STDIN) and outputs an encoded string",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "index-usage",
+                    "entry_value": "Index Usage",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "innodb-bufferpool-hitrate",
+                    "entry_value": "InnoDB Buffer Pool Hitrate",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "innodb-bufferpool-wait-free",
+                    "entry_value": "InnoDB Buffer Pool Waits (rate)",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "innodb-log-waits",
+                    "entry_value": "InnoDB Log Waits (rate)",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "long-running-procs",
+                    "entry_value": "Long Running processes",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "myisam-keycache-hitrate",
+                    "entry_value": "MyISAM Key-Cache Hitrate",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "open-files",
+                    "entry_value": "Number of open files (of upper limit)",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "querycache-hitrate",
+                    "entry_value": "Query-Cache Hitrate",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "querycache-lowmem-prunes",
+                    "entry_value": "Query-Cache Prunes (due to memory shortness)",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "slave-io-running",
+                    "entry_value": "Slave IO-Thread of is running",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "slave-lag",
+                    "entry_value": "Slave-Lag (Delay between Master and Slave)",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "slave-sql-running",
+                    "entry_value": "Slave SQL-Thread is running",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "slow-queries",
+                    "entry_value": "Slow Queries",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "sql",
+                    "entry_value": "Custom SQL-Statement that returns a number",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "table-lock-contention",
+                    "entry_value": "Table Lock Contention",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "tablecache-hitrate",
+                    "entry_value": "Table-Cache Hitrate",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "threadcache-hitrate",
+                    "entry_value": "Thread-Cache Hitrate",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "threads-connected",
+                    "entry_value": "Threads Connected",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "tmp-disk-tables",
+                    "entry_value": "Tempory Tables on Disk",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "uptime",
+                    "entry_value": "Uptime, since DB server start (recognizes DB-Crash+Restart)",
+                    "format": "string",
+                    "allowed_roles": null
+                }
+            ],
+            "list_name": "check_mysql_health Check Modes",
+            "owner": "tom",
+            "uuid": "b8bf5434-4366-4df3-96a5-6c5ea2902a2f"
+        }
+    },
+    "ServiceSet": {
+        "MySQL Slave Checks": {
+            "assign_filter": "\"App MySQL Server\"=host.templates&host.vars.is_mysql_slave=true",
+            "object_name": "MySQL Slave Checks",
+            "object_type": "template",
+            "services": [
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL IO Thread",
+                    "object_type": "object",
+                    "uuid": "d7454ed0-6ddc-498a-a992-3ab8fd2a61ba",
+                    "vars": {
+                        "mysql_health_mode": "slave-io-running"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL SQL Thread",
+                    "object_type": "object",
+                    "uuid": "3530f338-b2d8-4c5b-91d4-3b531532d369",
+                    "vars": {
+                        "mysql_health_mode": "slave-sql-running"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Slave Lag",
+                    "object_type": "object",
+                    "uuid": "5108446c-b619-4e43-a074-b6ddc44be136",
+                    "vars": {
+                        "mysql_health_mode": "slave-lag"
+                    }
+                }
+            ],
+            "uuid": "560bb0a8-87e0-4a1f-9147-c5a5da2e9942"
+        },
+        "MySQL Server Checks": {
+            "assign_filter": "\"App MySQL Server\"=host.templates",
+            "object_name": "MySQL Server Checks",
+            "object_type": "template",
+            "services": [
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Connection Time",
+                    "object_type": "object",
+                    "uuid": "08b5f55e-cd8c-4c8f-a324-9b8e8148b062",
+                    "vars": {
+                        "mysql_health_mode": "connection-time"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Index Usage",
+                    "object_type": "object",
+                    "uuid": "b6bd09fc-886c-43bd-b6ec-5c840837ab26",
+                    "vars": {
+                        "mysql_health_mode": "index-usage"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL InnoDB Buffer Pool Hitrate",
+                    "object_type": "object",
+                    "uuid": "a8889df9-977f-4aa1-802c-16d64d10266c",
+                    "vars": {
+                        "mysql_health_mode": "innodb-bufferpool-hitrate"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL InnoDB Buffer Pool Waits",
+                    "object_type": "object",
+                    "uuid": "a774ab67-4894-492e-87de-ede4df3312ab",
+                    "vars": {
+                        "mysql_health_mode": "innodb-bufferpool-wait-free"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL InnoDB Log Waits",
+                    "object_type": "object",
+                    "uuid": "b36571cc-de53-44cf-94c1-d2885427c091",
+                    "vars": {
+                        "mysql_health_mode": "innodb-log-waits"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Long Running Processes",
+                    "object_type": "object",
+                    "uuid": "f76a225d-9a2c-48e0-9257-8916e76b1bc4",
+                    "vars": {
+                        "mysql_health_mode": "long-running-procs"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL MyISAM Key-Cache Hitrate",
+                    "object_type": "object",
+                    "uuid": "252e24d7-7cfe-42e5-814e-3adddd1388df",
+                    "vars": {
+                        "mysql_health_mode": "myisam-keycache-hitrate"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Query-Cache Hitrate",
+                    "object_type": "object",
+                    "uuid": "d37c9dfa-a4c6-41c4-a3c3-683410ed28b2",
+                    "vars": {
+                        "mysql_health_mode": "querycache-hitrate"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Slow Queries",
+                    "object_type": "object",
+                    "uuid": "502ca6e8-083e-46eb-8d46-dcfefd61128a",
+                    "vars": {
+                        "mysql_health_mode": "slow-queries"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Table Lock Contention",
+                    "object_type": "object",
+                    "uuid": "6ded1692-8c9b-4bcf-b097-74cec18f2e07",
+                    "vars": {
+                        "mysql_health_mode": "table-lock-contention"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Temporary Tables on Disk",
+                    "object_type": "object",
+                    "uuid": "d4ba3e6c-f5fd-44c6-a07f-9bd48c33204c",
+                    "vars": {
+                        "mysql_health_mode": "tmp-disk-tables"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Thread-Cache Hitrate",
+                    "object_type": "object",
+                    "uuid": "7ec3c3f6-e05f-406a-bf4c-ac5929c168be",
+                    "vars": {
+                        "mysql_health_mode": "threadcache-hitrate"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Threads Connected",
+                    "object_type": "object",
+                    "uuid": "7e0ae86d-7cc5-4dba-8d2a-afdc8849300f",
+                    "vars": {
+                        "mysql_health_mode": "threads-connected"
+                    }
+                },
+                {
+                    "fields": [],
+                    "imports": [
+                        "MySQL Health Check"
+                    ],
+                    "object_name": "MySQL Uptime",
+                    "object_type": "object",
+                    "uuid": "0924331a-4573-4f80-a457-6552d6f98ea3",
+                    "vars": {
+                        "mysql_health_mode": "uptime"
+                    }
+                }
+            ],
+            "uuid": "d9855b09-f8f5-4917-b611-2809e1032efd"
+        }
+    },
+    "ServiceTemplate": {
+        "MySQL Health Check": {
+            "check_command": "mysql_health",
+            "check_interval": 60,
+            "enable_active_checks": true,
+            "enable_event_handler": true,
+            "enable_flapping": true,
+            "enable_notifications": true,
+            "enable_passive_checks": true,
+            "enable_perfdata": true,
+            "fields": [
+                {
+                    "datafield_id": 4,
+                    "is_required": "y",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 5,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "groups": [
+                "MySQL Checks"
+            ],
+            "max_check_attempts": "3",
+            "object_name": "MySQL Health Check",
+            "object_type": "template",
+            "retry_interval": 60,
+            "uuid": "e25aab22-4804-4188-be10-6bd6705681d0",
+            "vars": {
+                "mysql_health_statefilesdir": "/var/cache/icinga2"
+            },
+            "volatile": false
+        }
+    },
+    "Datafield": {
+        "1": {
+            "uuid": "9bc08203-3695-4be6-8022-d8193696c4d1",
+            "varname": "mysql_health_password",
+            "caption": "MySQL Password",
+            "description": null,
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "2": {
+            "uuid": "34d64303-ba8f-43cd-baaf-4b449ecd80dc",
+            "varname": "mysql_health_username",
+            "caption": "MySQL Username",
+            "description": null,
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "3": {
+            "uuid": "316505f0-32b3-4977-90ba-58a0ed2fad27",
+            "varname": "mysql_is_slave",
+            "caption": "Is MySQL Slave",
+            "description": "Whether this node replicates from another MySQL Server",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeBoolean",
+            "format": null,
+            "settings": {},
+            "category": null
+        },
+        "4": {
+            "uuid": "2cfac521-6285-49a5-8176-f77c85bfbcc5",
+            "varname": "mysql_health_mode",
+            "caption": "Mode",
+            "description": null,
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeDatalist",
+            "format": null,
+            "settings": {
+                "data_type": "string",
+                "datalist": "check_mysql_health Check Modes"
+            },
+            "category": null
+        },
+        "5": {
+            "uuid": "e9b699bc-8793-4fca-b346-e749f39a4335",
+            "varname": "mysql_health_statefilesdir",
+            "caption": "State Files Directory",
+            "description": "An alternate directory where the plugin can save files.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {},
+            "category": null
+        }
+    }
+}

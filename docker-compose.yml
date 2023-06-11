@@ -34,6 +34,115 @@ x-icinga-director-config:
   icingaweb.resources.director-mysql.type: db
   icingaweb.resources.director-mysql.username: director
 
+x-icinga-web-grafana-config:
+  &icinga-web-grafana-config
+  icingaweb.modules.grafana.config.grafana.host: "grafana:3000"
+  icingaweb.modules.grafana.config.grafana.protocol: "http"
+  icingaweb.modules.grafana.config.grafana.timerangeAll: "1w/w"
+  icingaweb.modules.grafana.config.grafana.defaultdashboard: "icinga2-default"
+  icingaweb.modules.grafana.config.grafana.defaultdashboarduid: "icinga2-default"
+  icingaweb.modules.grafana.config.grafana.defaultdashboardpanelid: "1"
+  icingaweb.modules.grafana.config.grafana.defaultorgid: "1"
+  icingaweb.modules.grafana.config.grafana.shadows: "0"
+  icingaweb.modules.grafana.config.grafana.theme: "dark"
+  icingaweb.modules.grafana.config.grafana.datasource: "influxdb"
+  icingaweb.modules.grafana.config.grafana.accessmode: "indirectproxy"
+  icingaweb.modules.grafana.config.grafana.debug: "0"
+  icingaweb.modules.grafana.config.grafana.authentication: "token"
+  #icingaweb.modules.grafana.config.grafana.apitoken: "glsa_XtsOVMc3qAb0DWHxwuluybOQQdt63LsC_05110c43"
+  icingaweb.modules.grafana.config.grafana.indirectproxyrefresh: "yes"
+  icingaweb.modules.grafana.config.grafana.height: "280"
+  icingaweb.modules.grafana.config.grafana.width: "640"
+  icingaweb.modules.grafana.config.grafana.enableLink: "yes"
+  icingaweb.modules.grafana.config.grafana.usepublic: "yes"
+  icingaweb.modules.grafana.config.grafana.publichost: "127.0.0.1:3000"
+  icingaweb.modules.grafana.config.grafana.publicprotocol: "http"
+  icingaweb.modules.grafana.graphs.disk.dashboard: "disk"
+  icingaweb.modules.grafana.graphs.disk.panelId: "1"
+  icingaweb.modules.grafana.graphs.disk.orgId: "1"
+  icingaweb.modules.grafana.graphs.disk.repeatable: "no"
+  icingaweb.modules.grafana.graphs.disk.dashboarduid: "disk"
+  icingaweb.modules.grafana.graphs.hostalive.dashboard: "hostalive"
+  icingaweb.modules.grafana.graphs.hostalive.panelId: "1"
+  icingaweb.modules.grafana.graphs.hostalive.orgId: "1"
+  icingaweb.modules.grafana.graphs.hostalive.repeatable: "no"
+  icingaweb.modules.grafana.graphs.hostalive.dashboarduid: "hostalive"
+  icingaweb.modules.grafana.graphs.hostalive4.dashboard: "hostalive4"
+  icingaweb.modules.grafana.graphs.hostalive4.panelId: "1"
+  icingaweb.modules.grafana.graphs.hostalive4.orgId: "1"
+  icingaweb.modules.grafana.graphs.hostalive4.repeatable: "no"
+  icingaweb.modules.grafana.graphs.hostalive4.dashboarduid: "hostalive4"
+  icingaweb.modules.grafana.graphs.hostalive6.dashboard: "hostalive6"
+  icingaweb.modules.grafana.graphs.hostalive6.panelId: "1"
+  icingaweb.modules.grafana.graphs.hostalive6.orgId: "1"
+  icingaweb.modules.grafana.graphs.hostalive6.repeatable: "no"
+  icingaweb.modules.grafana.graphs.hostalive6.dashboarduid: "hostalive6"
+  icingaweb.modules.grafana.graphs.http.dashboard: "http"
+  icingaweb.modules.grafana.graphs.http.panelId: "1"
+  icingaweb.modules.grafana.graphs.http.orgId: "1"
+  icingaweb.modules.grafana.graphs.http.repeatable: "no"
+  icingaweb.modules.grafana.graphs.http.dashboarduid: "http"
+  icingaweb.modules.grafana.graphs.ido.dashboard: "ido"
+  icingaweb.modules.grafana.graphs.ido.panelId: "1"
+  icingaweb.modules.grafana.graphs.ido.orgId: "1"
+  icingaweb.modules.grafana.graphs.ido.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ido.dashboarduid: "ido"
+  icingaweb.modules.grafana.graphs.load.dashboard: "load"
+  icingaweb.modules.grafana.graphs.load.panelId: "1"
+  icingaweb.modules.grafana.graphs.load.orgId: "1"
+  icingaweb.modules.grafana.graphs.load.repeatable: "no"
+  icingaweb.modules.grafana.graphs.load.dashboarduid: "load"
+  icingaweb.modules.grafana.graphs.nscp-local-cpu.dashboard: "nscp-local-cpu"
+  icingaweb.modules.grafana.graphs.nscp-local-cpu.panelId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-cpu.orgId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-cpu.repeatable: "no"
+  icingaweb.modules.grafana.graphs.nscp-local-cpu.dashboarduid: "nscp-local-cpu"
+  icingaweb.modules.grafana.graphs.nscp-local-disk-free.dashboard: "nscp-local-disk-free"
+  icingaweb.modules.grafana.graphs.nscp-local-disk-free.panelId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-disk-free.orgId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-disk-free.repeatable: "no"
+  icingaweb.modules.grafana.graphs.nscp-local-disk-free.dashboarduid: "nscp-local-disk-free"
+  icingaweb.modules.grafana.graphs.nscp-local-memory.dashboard: "nscp-local-memory"
+  icingaweb.modules.grafana.graphs.nscp-local-memory.panelId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-memory.orgId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-memory.repeatable: "no"
+  icingaweb.modules.grafana.graphs.nscp-local-memory.dashboarduid: "nscp-local-memory"
+  icingaweb.modules.grafana.graphs.nscp-local-pagefile.dashboard: "nscp-local-pagefile"
+  icingaweb.modules.grafana.graphs.nscp-local-pagefile.panelId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-pagefile.orgId: "1"
+  icingaweb.modules.grafana.graphs.nscp-local-pagefile.repeatable: "no"
+  icingaweb.modules.grafana.graphs.nscp-local-pagefile.dashboarduid: "nscp-local-pagefile"
+  icingaweb.modules.grafana.graphs.ntp_time.dashboard: "ntp_time"
+  icingaweb.modules.grafana.graphs.ntp_time.panelId: "1"
+  icingaweb.modules.grafana.graphs.ntp_time.orgId: "1"
+  icingaweb.modules.grafana.graphs.ntp_time.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ntp_time.dashboarduid: "ntp_time"
+  icingaweb.modules.grafana.graphs.ping.dashboard: "ping"
+  icingaweb.modules.grafana.graphs.ping.panelId: "1"
+  icingaweb.modules.grafana.graphs.ping.orgId: "1"
+  icingaweb.modules.grafana.graphs.ping.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ping.dashboarduid: "ping"
+  icingaweb.modules.grafana.graphs.ping4.dashboard: "ping4"
+  icingaweb.modules.grafana.graphs.ping4.panelId: "1"
+  icingaweb.modules.grafana.graphs.ping4.orgId: "1"
+  icingaweb.modules.grafana.graphs.ping4.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ping4.dashboarduid: "ping4"
+  icingaweb.modules.grafana.graphs.ping6.dashboard: "ping6"
+  icingaweb.modules.grafana.graphs.ping6.panelId: "1"
+  icingaweb.modules.grafana.graphs.ping6.orgId: "1"
+  icingaweb.modules.grafana.graphs.ping6.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ping6.dashboarduid: "ping6"
+  icingaweb.modules.grafana.graphs.ssh.dashboard: "ssh"
+  icingaweb.modules.grafana.graphs.ssh.panelId: "1"
+  icingaweb.modules.grafana.graphs.ssh.orgId: "1"
+  icingaweb.modules.grafana.graphs.ssh.repeatable: "no"
+  icingaweb.modules.grafana.graphs.ssh.dashboarduid: "ssh"
+  icingaweb.modules.grafana.graphs.swap.dashboard: "swap"
+  icingaweb.modules.grafana.graphs.swap.panelId: "1"
+  icingaweb.modules.grafana.graphs.swap.orgId: "1"
+  icingaweb.modules.grafana.graphs.swap.repeatable: "no"
+  icingaweb.modules.grafana.graphs.swap.dashboarduid: "swap"
+
 x-icinga-web-config:
   &icinga-web-config
   icingaweb.authentication.icingaweb2.backend: db
@@ -55,11 +164,36 @@ x-icinga-web-config:
   icingaweb.roles.Administrators.groups: Administrators
   icingaweb.roles.Administrators.permissions: '*'
   icingaweb.roles.Administrators.users: icingaadmin
-
+  icingaweb.modules.fileshipper.imports.basket.basedir: "/custom_data/baskets/"
+ 
+ 
 x-icinga2-environment:
   &icinga2-environment
   ICINGA_CN: icinga2
   ICINGA_MASTER: 1
+  ICINGA2_FEATURE_INFLUXDB2: 1
+  ICINGA2_FEATURE_INFLUXDB2_HOST: influxdb
+  ICINGA2_FEATURE_INFLUXDB2_PORT: 8086
+  ICINGA2_FEATURE_INFLUXDB2_ORG: icinga
+  ICINGA2_FEATURE_INFLUXDB2_BUCKET: icinga
+  ICINGA2_FEATURE_INFLUXDB2_TOKEN: 1QkNyip0kl8XmNK_VNK8Ub_ttefpZSy7sOdvPY5vp-6yFMZbC6fiiopCpEb_kuyL7eDXOPa9bAR_c46On5fBkQ==
+  ICINGA2_FEATURE_INFLUXDB2_SEND_THRESHOLDS: true
+  ICINGA2_FEATURE_INFLUXDB2_SEND_METADATA: false
+  ICINGA_MYSQL_MONITORING_PASSWORD: ${ICINGA_MYSQL_MONITORING_PASSWORD:-icingamon}
+
+
+x-influxdb-credentials:
+  &influxdb-credentials
+  DOCKER_INFLUXDB_INIT_MODE: setup
+  DOCKER_INFLUXDB_INIT_USERNAME: root
+  DOCKER_INFLUXDB_INIT_PASSWORD: password
+  DOCKER_INFLUXDB_INIT_ORG: icinga
+  DOCKER_INFLUXDB_INIT_BUCKET: icinga
+  DOCKER_INFLUXDB_INIT_RETENTION: 52w
+  DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: 1QkNyip0kl8XmNK_VNK8Ub_ttefpZSy7sOdvPY5vp-6yFMZbC6fiiopCpEb_kuyL7eDXOPa9bAR_c46On5fBkQ==
+  INFLUXDB_V1_DATABASE: icinga
+  INFLUXDB_V1_USER: icinga
+  INFLUXDB_V1_PASSWORD: ${INFLUXDB_V1_PASSWORD:-icinga8CharsMIN}
 
 x-logging:
   &default-logging
@@ -83,28 +217,33 @@ services:
         echo "Testing the Icinga 2 API connection. Container could restart."
         (echo > /dev/tcp/icinga2/5665) >/dev/null 2>&1
         icingacli director migration run
-        (icingacli director kickstart required && icingacli director kickstart run && icingacli director config deploy) || true
+        (icingacli director kickstart required && icingacli director kickstart run) || true
+        /custom_data/baskets/restore_all_baskets.sh
+        icingacli director config deploy || true
         echo "Starting Icinga Director daemon."
         icingacli director daemon run
     entrypoint: []
     logging: *default-logging
-    image: icinga/icingaweb2
+    image: icinga/icingaweb2:master
     restart: on-failure
     volumes:
       - icingaweb:/data
+      - ./icingaweb2-module-grafana:/usr/share/icingaweb2/modules/grafana
+      - ./baskets:/custom_data/baskets
 
   # The Icinga 2 docker image does not support configuration via env vars at the moment.
   # So, we have to ship some configs with this little init container. Referenced in depends_on of the icinga2 service.
   init-icinga2:
     command: [ "/config/init-icinga2.sh" ]
     environment: *icinga2-environment
-    image: icinga/icinga2
+    image: icinga/icinga2-custom
+    build:
+      context: ./build/icinga2-custom/
+      dockerfile: Dockerfile
     logging: *default-logging
     volumes:
       - icinga2:/data
-      - ./icingadb.conf:/config/icingadb.conf
-      - ./icingaweb-api-user.conf:/config/icingaweb-api-user.conf
-      - ./init-icinga2.sh:/config/init-icinga2.sh
+      - ./config/icinga2:/config
 
   icinga2:
     command: [ "sh", "-c", "sleep 5 ; icinga2 daemon" ]
@@ -112,7 +251,10 @@ services:
       - icingadb-redis
       - init-icinga2
     environment: *icinga2-environment
-    image: icinga/icinga2
+    image: icinga/icinga2-custom
+    build:
+      context: ./build/icinga2-custom/
+      dockerfile: Dockerfile
     logging: *default-logging
     ports:
       - 5665:5665
@@ -143,19 +285,24 @@ services:
     depends_on:
       - mysql
     environment:
-      icingaweb.enabledModules: director, icingadb, incubator
-      <<: *icinga-db-web-config
-      <<: *icinga-director-config
-      <<: *icinga-web-config
+      icingaweb.enabledModules: director, icingadb, incubator, x509, grafana, fileshipper
+      <<:  [ *icinga-db-web-config,
+             *icinga-director-config,
+             *icinga-web-grafana-config,
+             *icinga-web-config ]
     logging: *default-logging
-    image: icinga/icingaweb2
+    image: icinga/icingaweb2:master
     ports:
       - 8080:8080
     # Restart Icinga Web container automatically since we have to wait for the database to be ready.
     # Please note that this needs a more sophisticated solution.
     restart: on-failure
+    command: [ "bash", "-eo", "pipefail", "-c", ". /etc/apache2/envvars; exec /config/init-icingaweb.sh" ]
     volumes:
       - icingaweb:/data
+      - ./icingaweb2-module-grafana:/usr/share/icingaweb2/modules/grafana
+      - ./baskets:/custom_data/baskets
+      - ./env/icingaweb:/config
 
   mysql:
     image: mariadb:10.7
@@ -164,13 +311,58 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 1
       ICINGADB_MYSQL_PASSWORD: ${ICINGADB_MYSQL_PASSWORD:-icingadb}
       ICINGAWEB_MYSQL_PASSWORD: ${ICINGAWEB_MYSQL_PASSWORD:-icingaweb}
+      ICINGA_MYSQL_MONITORING_PASSWORD: ${ICINGA_MYSQL_MONITORING_PASSWORD:-icingamon}
       ICINGA_DIRECTOR_MYSQL_PASSWORD: ${ICINGA_DIRECTOR_MYSQL_PASSWORD:-director}
     logging: *default-logging
     volumes:
       - mysql:/var/lib/mysql
       - ./env/mysql/:/docker-entrypoint-initdb.d/
 
+  influxdb:
+    image: influxdb:2.7.1
+    restart: on-failure:5
+    logging: *default-logging
+    environment:
+      <<:  *influxdb-credentials
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-storage:/var/lib/influxdb2
+      - ./env/influxdb/:/docker-entrypoint-initdb.d/
+
+  grafana:
+    depends_on:
+      - influxdb
+    image: grafana/grafana:9.5.2
+    restart: on-failure:5
+    logging: *default-logging
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8081/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000
+      GF_LOG_FILTERS: rendering:debug
+      DS_ICINGA2-INFLUXDB: icinga2-influxDB
+      <<:  *influxdb-credentials
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./config/grafana/icinga_dashboards.yaml:/etc/grafana/provisioning/dashboards/icinga_dashboards.yaml
+      - ./config/grafana/icinga_datasources.yaml:/etc/grafana/provisioning/datasources/icinga_datasources.yaml
+      - ./config/grafana/dashboards:/opt/icinga_dashboards
+
+  renderer:
+    depends_on:
+      - grafana
+    image: grafana/grafana-image-renderer:3.7.1
+    restart: on-failure:5
+    logging: *default-logging
+    ports:
+      - 8081
+
+
 volumes:
   icinga2:
   icingaweb:
   mysql:
+  grafana-storage:
+  influxdb-storage:

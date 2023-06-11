@@ -1,0 +1,10 @@
+{
+    "HostTemplate": {
+        "App InfluxDB": {
+            "fields": [],
+            "object_name": "App InfluxDB",
+            "object_type": "template",
+            "uuid": "4003c117-6eab-4650-a402-2c877c0fc4e2"
+        }
+    }
+}

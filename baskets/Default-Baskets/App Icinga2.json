@@ -1,0 +1,439 @@
+{
+    "ExternalCommand": {
+        "icingadb": {
+            "fields": [
+                {
+                    "datafield_id": 44,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 45,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 46,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 47,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 48,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 49,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 50,
+                    "is_required": "y",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 51,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 52,
+                    "is_required": "n",
+                    "var_filter": null
+                }
+            ],
+            "methods_execute": "PluginCheck",
+            "object_name": "icingadb",
+            "object_type": "external_object",
+            "timeout": 60,
+            "uuid": "a758f735-4161-4b6c-bb73-6eb07c106ec6",
+            "vars": {
+                "icingadb_database_backlog_critical": 900,
+                "icingadb_database_backlog_warning": 300,
+                "icingadb_full_dump_duration_critical": 600,
+                "icingadb_full_dump_duration_warning": 300,
+                "icingadb_full_sync_duration_critical": 600,
+                "icingadb_full_sync_duration_warning": 300,
+                "icingadb_name": "icingadb",
+                "icingadb_redis_backlog_critical": 900,
+                "icingadb_redis_backlog_warning": 300
+            }
+        }
+    },
+    "HostTemplate": {
+        "App icinga2": {
+            "fields": [],
+            "object_name": "App icinga2",
+            "object_type": "template",
+            "uuid": "f16effb8-1e6a-43a6-abc6-61a8e359f600"
+        },
+        "App icinga2/master": {
+            "fields": [],
+            "object_name": "App icinga2/master",
+            "object_type": "template",
+            "uuid": "6439736f-25cf-431c-ad1a-3ef30fa4bd3c"
+        },
+        "App icinga2/Redis": {
+            "fields": [],
+            "object_name": "App icinga2/Redis",
+            "object_type": "template",
+            "uuid": "49e527cb-9673-44e5-8124-a9ddfe14429b"
+        },
+        "App icinga2/satellite": {
+            "fields": [],
+            "object_name": "App icinga2/satellite",
+            "object_type": "template",
+            "uuid": "ce332f90-2f37-4083-af5a-c95585a36c32"
+        },
+        "App icinga2/web": {
+            "fields": [],
+            "object_name": "App icinga2/web",
+            "object_type": "template",
+            "uuid": "48e9a07d-4539-4658-b46d-9517c40c1f28"
+        }
+    },
+    "ServiceGroup": {
+        "Icinga Checks": {
+            "display_name": "Icinga Checks",
+            "object_name": "Icinga Checks",
+            "object_type": "object",
+            "uuid": "e1af02a9-e674-4efb-85b9-f134fe735c35"
+        }
+    },
+    "ServiceTemplate": {
+        "Icinga": {
+            "check_command": "icinga",
+            "fields": [],
+            "groups": [
+                "Icinga Checks"
+            ],
+            "object_name": "Icinga",
+            "object_type": "template",
+            "use_agent": true,
+            "uuid": "3ae15d88-7cee-41c4-a908-d935940e16e1",
+            "vars": {
+                "icinga_min_version": "2.13"
+            }
+        },
+        "Icinga Cluster": {
+            "check_command": "cluster",
+            "check_interval": 15,
+            "enable_active_checks": true,
+            "enable_event_handler": true,
+            "enable_notifications": true,
+            "enable_passive_checks": true,
+            "enable_perfdata": true,
+            "fields": [],
+            "groups": [
+                "Icinga Checks"
+            ],
+            "max_check_attempts": "3",
+            "object_name": "Icinga Cluster",
+            "object_type": "template",
+            "retry_interval": 15,
+            "use_agent": true,
+            "uuid": "05bd16d8-6957-4486-a970-d40a493cebaf",
+            "volatile": true
+        },
+        "Icinga Cluster Zone": {
+            "check_command": "cluster-zone",
+            "fields": [],
+            "groups": [
+                "Icinga Checks"
+            ],
+            "object_name": "Icinga Cluster Zone",
+            "object_type": "template",
+            "uuid": "f9ee2b60-25e0-436b-a857-088b70ccddf7"
+        },
+        "Icinga DB": {
+            "check_command": "icingadb",
+            "fields": [],
+            "object_name": "Icinga DB",
+            "object_type": "template",
+            "use_agent": true,
+            "uuid": "d20917c4-84c8-4b8b-a776-8ebd9dbf6703"
+        },
+        "Icinga IDO": {
+            "check_command": "ido",
+            "fields": [
+                {
+                    "datafield_id": 53,
+                    "is_required": "y",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 54,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 55,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 56,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 57,
+                    "is_required": "n",
+                    "var_filter": null
+                },
+                {
+                    "datafield_id": 58,
+                    "is_required": "y",
+                    "var_filter": null
+                }
+            ],
+            "groups": [
+                "Icinga Checks"
+            ],
+            "object_name": "Icinga IDO",
+            "object_type": "template",
+            "use_agent": true,
+            "uuid": "7595d6b2-8811-4809-80ad-ba06bca9ac82",
+            "vars": {
+                "ido_name": "ido-mysql",
+                "ido_type": "IdoMysqlConnection"
+            }
+        }
+    },
+    "ServiceSet": {
+        "Icinga Master": {
+            "object_name": "Icinga Master",
+            "object_type": "template",
+            "services": [
+                {
+                    "fields": [],
+                    "imports": [
+                        "Icinga Cluster"
+                    ],
+                    "object_name": "Icinga Cluster",
+                    "object_type": "object",
+                    "uuid": "74c82d6d-6dce-4be1-9326-c7ec81238b8a"
+                }
+            ],
+            "uuid": "afccf8d9-d347-49fd-a1bb-7a5262de740f"
+        },
+        "Icinga Satellite": {
+            "object_name": "Icinga Satellite",
+            "object_type": "template",
+            "services": [
+                {
+                    "fields": [],
+                    "imports": [
+                        "Icinga Cluster Zone"
+                    ],
+                    "object_name": "Icinga Cluster Zone",
+                    "object_type": "object",
+                    "uuid": "7f782e4e-a717-4653-8a42-c30bd7d4bc43"
+                }
+            ],
+            "uuid": "97c35eb6-8cfd-42b7-93e6-4f64ebacbcf6"
+        }
+    },
+    "DataList": {
+        "IDO Types": {
+            "entries": [
+                {
+                    "entry_name": "IdoMysqlConnection",
+                    "entry_value": "MySQL Connection",
+                    "format": "string",
+                    "allowed_roles": null
+                },
+                {
+                    "entry_name": "IdoPgsqlConnection",
+                    "entry_value": "PostgreSQL Connection",
+                    "format": "string",
+                    "allowed_roles": null
+                }
+            ],
+            "list_name": "IDO Types",
+            "owner": "tom",
+            "uuid": "ac153289-4147-44a4-ae27-834357a7bd1c"
+        }
+    },
+    "Datafield": {
+        "44": {
+            "uuid": "503cac6b-1b0a-4160-bae1-94947509c9cb",
+            "varname": "icingadb_database_backlog_critical",
+            "caption": "Icingadb Database Backlog Critical",
+            "description": "Name\tDescription\r\nicingadb_name\tRequired. The name of the Icinga DB connection object. Defaults to icingadb.\r\nicingadb_full_dump_duration_warning\tOptional. Warning threshold for ongoing Redis dump duration. Applies if the value is higher than the threshold. Defaults to 5 minutes.\r\nicingadb_full_dump_duration_critical\tOptional. Critical threshold for ongoing Redis dump duration. Applies if the value is higher than the threshold. Defaults to 10 minutes.\r\nicingadb_full_sync_duration_warning\tOptional. Warning threshold for ongoing database sync duration. Applies if the value is higher than the threshold. Defaults to 5 minutes.\r\nicingadb_full_sync_duration_critical\tOptional. Critical threshold for ongoing database sync duration. Applies if the value is higher than the threshold. Defaults to 10 minutes.\r\nicingadb_redis_backlog_warning\tOptional. Warning threshold for Redis write backlog. Applies if the value is higher than the threshold. Defaults to 5 minutes.\r\nicingadb_redis_backlog_critical\tOptional. Critical threshold for Redis write backlog. Applies if the value is higher than the threshold. Defaults to 15 minutes.\r\nicingadb_database_backlog_warning\tOptional. Warning threshold for database sync backlog. Applies if the value is higher than the threshold. Defaults to 5 minutes.\r\nicingadb_database_backlog_critical\tOptional. Critical threshold for database sync backlog. Applies if the value is higher than the threshold. Defaults to 15 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "45": {
+            "uuid": "8c1a7a81-be12-4240-a2dd-ffc753e17f6a",
+            "varname": "icingadb_database_backlog_warning",
+            "caption": "Icingadb Database Backlog Warning",
+            "description": "Optional. Warning threshold for database sync backlog. Applies if the value is higher than the threshold. Defaults to 5 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "46": {
+            "uuid": "c5f37073-5800-4e8c-b577-f57372ea4d78",
+            "varname": "icingadb_full_dump_duration_critical",
+            "caption": "Icingadb Full Dump Duration Critical",
+            "description": "Optional. Critical threshold for ongoing Redis dump duration. Applies if the value is higher than the threshold. Defaults to 10 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "47": {
+            "uuid": "99afdad5-c2e4-41aa-b06b-ddcffac099c7",
+            "varname": "icingadb_full_dump_duration_warning",
+            "caption": "Icingadb Full Dump Duration Warning",
+            "description": "Optional. Warning threshold for ongoing Redis dump duration. Applies if the value is higher than the threshold. Defaults to 5 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "48": {
+            "uuid": "7717813c-c3cf-406a-98cd-d19c8c14bf71",
+            "varname": "icingadb_full_sync_duration_critical",
+            "caption": "Icingadb Full Sync Duration Critical",
+            "description": "Optional. Critical threshold for ongoing database sync duration. Applies if the value is higher than the threshold. Defaults to 10 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "49": {
+            "uuid": "85b4d92f-377b-4d10-996f-a539ea9bbe13",
+            "varname": "icingadb_full_sync_duration_warning",
+            "caption": "Icingadb Full Sync Duration Warning",
+            "description": "Optional. Warning threshold for ongoing database sync duration. Applies if the value is higher than the threshold. Defaults to 5 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "50": {
+            "uuid": "571753ea-7b2b-45e9-8dee-d57a2e34d11e",
+            "varname": "icingadb_name",
+            "caption": "Icingadb Name",
+            "description": "Required. The name of the Icinga DB connection object. Defaults to icingadb.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "51": {
+            "uuid": "31152ba7-fb14-41f3-bf29-c7e89086450f",
+            "varname": "icingadb_redis_backlog_critical",
+            "caption": "Icingadb Redis Backlog Critical",
+            "description": "Optional. Critical threshold for Redis write backlog. Applies if the value is higher than the threshold. Defaults to 15 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "52": {
+            "uuid": "1fadf74b-821f-40a9-8f42-cee6101de918",
+            "varname": "icingadb_redis_backlog_warning",
+            "caption": "Icingadb Redis Backlog Warning",
+            "description": "icingadb_redis_backlog_warning';'Optional. Warning threshold for Redis write backlog. Applies if the value is higher than the threshold. Defaults to 5 minutes.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeNumber",
+            "format": null,
+            "settings": {},
+            "category": "icinga checks"
+        },
+        "53": {
+            "uuid": "d9747b78-9ad5-4f67-92ca-17ec3fb2d1ef",
+            "varname": "ido_name",
+            "caption": "IDO Connection Name",
+            "description": "The name of the IDO connection object, usually ido-mysql or ido-pqsql",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "54": {
+            "uuid": "f6854fd1-7546-44d2-80df-a667bc31f464",
+            "varname": "ido_pending_queries_critical",
+            "caption": "Pending IDO Queries (critical)",
+            "description": "Critical threshold for pending queries. Applies if pending queries are higher than the threshold. Supersedes the ido_queries thresholds above.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "55": {
+            "uuid": "96a96eae-bf92-49ae-8006-e982a29562a2",
+            "varname": "ido_pending_queries_warning",
+            "caption": "Pending IDO Queries (warning)",
+            "description": "Warning threshold for pending queries. Applies if pending queries are higher than the threshold. Supersedes the ido_queries thresholds above.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "56": {
+            "uuid": "ed019225-e1f0-4210-b1f8-d64e9cd7f8f6",
+            "varname": "ido_queries_critical",
+            "caption": "IDO Queries (critical)",
+            "description": "Critical threshold for queries/s. Applies if the rate is lower than the threshold.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "57": {
+            "uuid": "602cf64c-dc17-4b3e-970e-34e11274a7ff",
+            "varname": "ido_queries_warning",
+            "caption": "IDO Queries (warning)",
+            "description": "Warning threshold for queries/s. Applies if the rate is lower than the threshold.",
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeString",
+            "format": null,
+            "settings": {
+                "visibility": "visible"
+            },
+            "category": "icinga checks"
+        },
+        "58": {
+            "uuid": "aeabdf26-991f-4abe-bc8f-ca06f09ed414",
+            "varname": "ido_type",
+            "caption": "IDO Connection Type",
+            "description": null,
+            "datatype": "Icinga\\Module\\Director\\DataType\\DataTypeDatalist",
+            "format": null,
+            "settings": {
+                "behavior": "strict",
+                "data_type": "string",
+                "datalist": "IDO Types"
+            },
+            "category": "icinga checks"
+        }
+    },
+    "DatafieldCategory": {
+        "icinga checks": {
+            "category_name": "icinga checks",
+            "description": null,
+            "originalId": "3"
+        }
+    }
+}

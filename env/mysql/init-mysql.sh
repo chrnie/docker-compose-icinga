@@ -15,3 +15,5 @@ EOS
 create_database_and_user director director ${ICINGA_DIRECTOR_MYSQL_PASSWORD}
 create_database_and_user icingadb icingadb ${ICINGADB_MYSQL_PASSWORD}
 create_database_and_user icingaweb icingaweb ${ICINGAWEB_MYSQL_PASSWORD}
+
+mysql --user root --password=$MYSQL_ROOT_PASSWORD -e "grant usage on *.* to 'icinga'@'%' identified by '${ICINGA_MYSQL_MONITORING_PASSWORD}'"

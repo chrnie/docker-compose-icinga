@@ -1,0 +1,158 @@
+{
+    "Basket": {
+        "App Icinga2": {
+            "basket_name": "App Icinga2",
+            "objects": {
+                "ExternalCommand": [
+                    "icingadb"
+                ],
+                "HostGroup": [],
+                "IcingaTemplateChoiceHost": [],
+                "HostTemplate": [
+                    "App icinga2",
+                    "App icinga2/master",
+                    "App icinga2/Redis",
+                    "App icinga2/satellite",
+                    "App icinga2/web"
+                ],
+                "ServiceGroup": [],
+                "ServiceTemplate": [
+                    "Icinga",
+                    "Icinga Cluster",
+                    "Icinga Cluster Zone",
+                    "Icinga DB",
+                    "Icinga IDO"
+                ],
+                "ServiceSet": [
+                    "Icinga Master",
+                    "Icinga Satellite"
+                ],
+                "DataList": [
+                    "IDO Types"
+                ]
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "0e32e3c8-9b30-7e11-dbd9-fd8bf6b04bee"
+        },
+        "Automation": {
+            "basket_name": "Automation",
+            "objects": {
+                "ImportSource": [
+                    "basket-hosts"
+                ],
+                "SyncRule": [
+                    "hosts from basket csv"
+                ],
+                "DirectorJob": [
+                    "import_hosts",
+                    "sync_hosts",
+                    "deploy"
+                ]
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "23dd396f-8a98-b1d1-f288-19179106c70e"
+        },
+        "meta_basket": {
+            "basket_name": "meta_basket",
+            "objects": {
+                "Basket": true
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "5217cc71-55ad-83cd-5f1b-f813dbc3451f"
+        },
+        "App Mysql Server": {
+            "basket_name": "App Mysql Server",
+            "objects": {
+                "HostTemplate": [
+                    "App MySQL Server"
+                ],
+                "ServiceGroup": [
+                    "MySQL Checks"
+                ],
+                "DataList": [
+                    "check_mysql_health Check Modes"
+                ],
+                "ServiceSet": [
+                    "MySQL Slave Checks",
+                    "MySQL Server Checks"
+                ],
+                "ServiceTemplate": [
+                    "MySQL Health Check"
+                ]
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "54fdf33c-533c-8b9c-529d-9aafb46fed3e"
+        },
+        "App Grafana": {
+            "basket_name": "App Grafana",
+            "objects": {
+                "HostGroup": [],
+                "HostTemplate": [
+                    "App Grafana",
+                    "App Grafana Renderer"
+                ],
+                "ServiceGroup": [],
+                "ServiceTemplate": [],
+                "ServiceSet": [],
+                "DataList": []
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "a7097c6f-c2c2-8fff-5bcf-2c9aa4d552dd"
+        },
+        "Base OS": {
+            "basket_name": "Base OS",
+            "objects": {
+                "ExternalCommand": [
+                    "by_ssh_load"
+                ],
+                "HostGroup": [],
+                "IcingaTemplateChoiceHost": [],
+                "HostTemplate": [
+                    "Base Template",
+                    "Linux by agent",
+                    "Linux by ssh"
+                ],
+                "ServiceGroup": [],
+                "IcingaTemplateChoiceService": [],
+                "ServiceTemplate": [
+                    "Default Agent Service",
+                    "Default Service",
+                    "Default SSH Service",
+                    "Linux Load",
+                    "Linux SSH Load"
+                ],
+                "ServiceSet": [
+                    "Linux Agent Base Checks"
+                ],
+                "Dependency": [],
+                "DataList": [
+                    "Operating Systems"
+                ]
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "adbcbd38-1bb5-67ee-88de-2be6ae28c0d7"
+        },
+        "App InfluxDB": {
+            "basket_name": "App InfluxDB",
+            "objects": {
+                "HostGroup": [],
+                "HostTemplate": [
+                    "App InfluxDB"
+                ],
+                "ServiceGroup": [],
+                "ServiceTemplate": [],
+                "ServiceSet": [],
+                "DataList": []
+            },
+            "owner_type": "user",
+            "owner_value": "icingaadmin",
+            "uuid": "e5247992-5a60-6d77-0a4e-3ae3a451961b"
+        }
+    }
+}

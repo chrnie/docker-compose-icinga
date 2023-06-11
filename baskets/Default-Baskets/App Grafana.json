@@ -1,0 +1,16 @@
+{
+    "HostTemplate": {
+        "App Grafana": {
+            "fields": [],
+            "object_name": "App Grafana",
+            "object_type": "template",
+            "uuid": "5091048c-78f4-4e21-8613-35b98d8d9c8a"
+        },
+        "App Grafana Renderer": {
+            "fields": [],
+            "object_name": "App Grafana Renderer",
+            "object_type": "template",
+            "uuid": "c2f2b795-016b-462b-93e6-cdcc49605d68"
+        }
+    }
+}

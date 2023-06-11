@@ -1,0 +1,104 @@
+{
+    "ImportSource": {
+        "basket-hosts": {
+            "key_column": "hostname",
+            "modifiers": [
+                {
+                    "priority": "1",
+                    "property_name": "vars",
+                    "provider_class": "Icinga\\Module\\Director\\PropertyModifier\\PropertyModifierJsonDecode",
+                    "settings": {
+                        "on_failure": "null"
+                    },
+                    "target_property": "vars"
+                },
+                {
+                    "priority": "2",
+                    "property_name": "import",
+                    "provider_class": "Icinga\\Module\\Director\\PropertyModifier\\PropertyModifierJsonDecode",
+                    "settings": {
+                        "on_failure": "null"
+                    },
+                    "target_property": "import"
+                }
+            ],
+            "provider_class": "Icinga\\Module\\Fileshipper\\ProvidedHook\\Director\\ImportSource",
+            "settings": {
+                "basedir": "/custom_data/baskets/",
+                "csv_delimiter": ";",
+                "csv_enclosure": "'",
+                "file_format": "csv",
+                "file_name": "hosts.csv"
+            },
+            "source_name": "basket-hosts"
+        }
+    },
+    "SyncRule": {
+        "hosts from basket csv": {
+            "object_type": "host",
+            "properties": [
+                {
+                    "destination_field": "import",
+                    "filter_expression": null,
+                    "merge_policy": "override",
+                    "priority": "1",
+                    "source": "basket-hosts",
+                    "source_expression": "${import}"
+                },
+                {
+                    "destination_field": "address",
+                    "filter_expression": null,
+                    "merge_policy": "override",
+                    "priority": "2",
+                    "source": "basket-hosts",
+                    "source_expression": "${address}"
+                },
+                {
+                    "destination_field": "vars",
+                    "filter_expression": null,
+                    "merge_policy": "merge",
+                    "priority": "3",
+                    "source": "basket-hosts",
+                    "source_expression": "${vars}"
+                }
+            ],
+            "purge_action": "delete",
+            "purge_existing": true,
+            "rule_name": "hosts from basket csv",
+            "update_policy": "override"
+        }
+    },
+    "DirectorJob": {
+        "import_hosts": {
+            "disabled": "n",
+            "job_class": "Icinga\\Module\\Director\\Job\\ImportJob",
+            "job_name": "import_hosts",
+            "run_interval": "900",
+            "settings": {
+                "run_import": "y",
+                "source": "basket-hosts"
+            }
+        },
+        "sync_hosts": {
+            "disabled": "n",
+            "job_class": "Icinga\\Module\\Director\\Job\\SyncJob",
+            "job_name": "sync_hosts",
+            "run_interval": "900",
+            "settings": {
+                "apply_changes": false,
+                "rule": "hosts from basket csv"
+            }
+        },
+        "deploy": {
+            "disabled": "n",
+            "job_class": "Icinga\\Module\\Director\\Job\\ConfigJob",
+            "job_name": "deploy",
+            "run_interval": "900",
+            "settings": {
+                "deploy_when_changed": "n",
+                "force_generate": "n",
+                "grace_period": "600"
+            }
+        }
+    }
+}
