@@ -34,6 +34,23 @@ x-icinga-director-config:
   icingaweb.resources.director-mysql.type: db
   icingaweb.resources.director-mysql.username: director
 
+x-icinga-x509-config:
+  &icinga-x509-config
+  icingaweb.modules.director.config.db.resource: director-mysql
+  icingaweb.modules.director.kickstart.config.endpoint: icinga2
+  icingaweb.modules.director.kickstart.config.host: icinga2
+  icingaweb.modules.director.kickstart.config.port: 5665
+  icingaweb.modules.director.kickstart.config.username: icingaweb
+  icingaweb.modules.director.kickstart.config.password: ${ICINGAWEB_ICINGA2_API_USER_PASSWORD:-icingaweb}
+
+  icingaweb.resources.x509-mysql.charset: utf8mb4
+  icingaweb.resources.x509-mysql.db: mysql
+  icingaweb.resources.x509-mysql.dbname: x509
+  icingaweb.resources.x509-mysql.host: mysql
+  icingaweb.resources.x509-mysql.password: ${ICINGA_X509_MYSQL_PASSWORD:-secret}
+  icingaweb.resources.x509-mysql.type: db
+  icingaweb.resources.x509-mysql.username: x509
+
 x-icinga-web-grafana-config:
   &icinga-web-grafana-config
   icingaweb.modules.grafana.config.grafana.host: "grafana:3000"
@@ -208,6 +225,8 @@ networks:
 
 services:
   director:
+    depends_on:
+      - mysql
     command:
       - /bin/bash
       - -ce
@@ -230,6 +249,31 @@ services:
       - icingaweb:/data
       - ./icingaweb2-module-grafana:/usr/share/icingaweb2/modules/grafana
       - ./baskets:/custom_data/baskets
+
+
+#  icingaweb.resources.x509-mysql.password: 
+#  icingaweb.resources.x509-mysql.type: db
+#  icingaweb.resources.x509-mysql.username: x509
+#  x509:
+#    command:
+#      - /bin/bash
+#      - -ce
+#      - |
+#        echo "Testing the database connection. Container could restart."
+#        (echo > /dev/tcp/mysql/3306) >/dev/null 2>&1
+#        mysql -h x509 -u x509 -p${ICINGA_X509_MYSQL_PASSWORD:-secret} -e "use x509; show tables"
+#        while true; do
+#          icingacli x509 jobs run
+#          sleep 10m
+#        done
+#    entrypoint: []
+#    logging: *default-logging
+#    image: icinga/icingaweb2:master
+#    restart: on-failure
+#    volumes:
+#      - icingaweb:/data
+#      - ./icingaweb2-module-grafana:/usr/share/icingaweb2/modules/grafana
+#      - ./baskets:/custom_data/baskets
 
   # The Icinga 2 docker image does not support configuration via env vars at the moment.
   # So, we have to ship some configs with this little init container. Referenced in depends_on of the icinga2 service.
@@ -313,6 +357,7 @@ services:
       ICINGAWEB_MYSQL_PASSWORD: ${ICINGAWEB_MYSQL_PASSWORD:-icingaweb}
       ICINGA_MYSQL_MONITORING_PASSWORD: ${ICINGA_MYSQL_MONITORING_PASSWORD:-icingamon}
       ICINGA_DIRECTOR_MYSQL_PASSWORD: ${ICINGA_DIRECTOR_MYSQL_PASSWORD:-director}
+      ICINGA_X509_MYSQL_PASSWORD: ${ICINGA_X509_MYSQL_PASSWORD:-secret}
     logging: *default-logging
     volumes:
       - mysql:/var/lib/mysql
